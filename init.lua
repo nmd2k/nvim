@@ -28,7 +28,19 @@ vim.opt.rtp:prepend(lazypath)
 local plugins = {
     { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
     { "nvim-telescope/telescope.nvim", tag = '0.1.8', dependencies = { 'nvim-lua/plenary.nvim' } },
-    { "nvim-treesitter/nvim-treesitter", branch = 'master', lazy = false, build = ":TSUpdate"}
+    { "nvim-treesitter/nvim-treesitter", branch = 'master', lazy = false, build = ":TSUpdate" },
+    { "numToStr/Comment.nvim", opts = {} },
+    {
+        "iamcco/markdown-preview.nvim",
+        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+        ft = { "markdown" },
+        build = function() vim.fn["mkdp#util#install"]() end,
+        init = function()
+            vim.g.mkdp_filetypes = { "markdown" }
+            -- Optional: force a specific browser
+            vim.g.mkdp_browser = "edge"
+        end,
+    }
 }
 local opts = {}
 
@@ -55,7 +67,7 @@ vim.cmd.colorscheme "catppuccin"
 -- Config for treesitter
 local config = require('nvim-treesitter.configs') 
 config.setup({
-  ensure_installed = {"lua", "python", "vim"},
+  ensure_installed = {"lua", "python", "vim", "markdown", "vimdoc", "markdown_inline"},
   highlight = { enable = true },
   indent = { enable = true }
 })
