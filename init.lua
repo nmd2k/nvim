@@ -1,12 +1,3 @@
-vim.cmd("set expandtab")
-vim.cmd("set tabstop=4")
-vim.cmd("set softtabstop=4")
-vim.cmd("set shiftwidth=4")
-
-vim.cmd("set number")
-vim.cmd("set rnu")
-
-
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -25,26 +16,6 @@ if vim.v.shell_error ~= 0 then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local plugins = {
-    { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
-    { "nvim-telescope/telescope.nvim", tag = '0.1.8', dependencies = { 'nvim-lua/plenary.nvim' } },
-    { "nvim-treesitter/nvim-treesitter", branch = 'master', lazy = false, build = ":TSUpdate" },
-    { "numToStr/Comment.nvim", opts = {} },
-    {
-        "iamcco/markdown-preview.nvim",
-        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-        ft = { "markdown" },
-        build = function() vim.fn["mkdp#util#install"]() end,
-        init = function()
-            vim.g.mkdp_filetypes = { "markdown" }
-            -- Optional: force a specific browser
-            vim.g.mkdp_browser = "edge"
-        end,
-    }
-}
-local opts = {}
-
-
 -- Make sure to setup `mapleader` and `maplocalleader` before
 -- loading lazy.nvim so that mappings are correct.
 -- This is also a good place to setup other settings (vim.opt)
@@ -52,22 +23,5 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 -- Setup lazy.nvim
-require("lazy").setup(plugins, opts)
-
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
--- vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
-vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
-
-require("catppuccin").setup()
-vim.cmd.colorscheme "catppuccin"
-
-
--- Config for treesitter
-local config = require('nvim-treesitter.configs') 
-config.setup({
-  ensure_installed = {"lua", "python", "vim", "markdown", "vimdoc", "markdown_inline"},
-  highlight = { enable = true },
-  indent = { enable = true }
-})
+require("lazy").setup("plugins")
+require("vim-option")
