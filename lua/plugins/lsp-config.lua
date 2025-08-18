@@ -31,6 +31,7 @@ return {
                             diagnosticMode = 'openFilesOnly',
                             autoSearchPaths = true,
                             useLibraryCodeForTypes = true,
+                            exclude = { "**/venv", "**/__pycache__" },
                         },
                     },
                 },
