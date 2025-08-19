@@ -16,6 +16,12 @@ if vim.v.shell_error ~= 0 then
 end
 vim.opt.rtp:prepend(lazypath)
 
+
+if vim.g.vscode then
+  vim.opt.laststatus = 0
+  vim.opt.showmode = true
+end
+
 -- Make sure to setup `mapleader` and `maplocalleader` before
 -- loading lazy.nvim so that mappings are correct.
 -- This is also a good place to setup other settings (vim.opt)
