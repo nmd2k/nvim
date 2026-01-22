@@ -9,7 +9,11 @@ return {
         "mason-org/mason-lspconfig.nvim",
         config = function()
             require("mason-lspconfig").setup({
+<<<<<<< HEAD
                 ensure_installed = { "lua_ls", "jedi_language_server", "clangd" },
+=======
+                ensure_installed = { "lua_ls", "pyright", "jedi-language-server" },
+>>>>>>> 46a82bde509dd729dee659cb5140b997b1b5591f
             })
         end,
     },
