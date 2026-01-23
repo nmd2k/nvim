@@ -24,4 +24,7 @@ vim.cmd("set number")
 --     underline = true,
 --     update_in_insert = false,
 -- })
---
+
+-- Quick escape from insert mode
+vim.keymap.set("i", "jk", "<Esc>", { desc = "Exit insert mode" })
+vim.keymap.set("i", "kj", "<Esc>", { desc = "Exit insert mode" })
