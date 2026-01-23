@@ -28,3 +28,6 @@ vim.cmd("set number")
 -- Quick escape from insert mode
 vim.keymap.set("i", "jk", "<Esc>", { desc = "Exit insert mode" })
 vim.keymap.set("i", "kj", "<Esc>", { desc = "Exit insert mode" })
+
+-- sync system clipboard
+vim.opt.clipboard = 'unnamedplus'
