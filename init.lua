@@ -32,19 +32,19 @@ vim.g.maplocalleader = "\\"
 require("lazy").setup("plugins")
 require("vim-option")
 
-if vim.g.vscode then
-    -- Define a shortcut helper for standard Vim command execution
-    local function vscode_action(cmd)
-        return function()
-            vim.fn.VSCodeNotify(cmd)
-        end
-    end
-
-    -- Normal Mode: Move line up/down with Alt+k / Alt+j
-    vim.keymap.set("n", "<A-k>", vscode_action("editor.action.moveLinesUpAction"), { desc = "Move line up" })
-    vim.keymap.set("n", "<A-j>", vscode_action("editor.action.moveLinesDownAction"), { desc = "Move line down" })
-
-    -- Visual Mode: Move selection up/down with Alt+k / Alt+j
-    vim.keymap.set("v", "<A-k>", vscode_action("editor.action.moveLinesUpAction"), { desc = "Move selection up" })
-    vim.keymap.set("v", "<A-j>", vscode_action("editor.action.moveLinesDownAction"), { desc = "Move selection down" })
-end
+-- if vim.g.vscode then
+--     -- Define a shortcut helper for standard Vim command execution
+--     local function vscode_action(cmd)
+--         return function()
+--             vim.fn.VSCodeNotify(cmd)
+--         end
+--     end
+--
+--     -- Normal Mode: Move line up/down with Alt+k / Alt+j
+--     vim.keymap.set("n", "<A-k>", vscode_action("editor.action.moveLinesUpAction"), { desc = "Move line up" })
+--     vim.keymap.set("n", "<A-j>", vscode_action("editor.action.moveLinesDownAction"), { desc = "Move line down" })
+--
+--     -- Visual Mode: Move selection up/down with Alt+k / Alt+j
+--     vim.keymap.set("v", "<A-k>", vscode_action("editor.action.moveLinesUpAction"), { desc = "Move selection up" })
+--     vim.keymap.set("v", "<A-j>", vscode_action("editor.action.moveLinesDownAction"), { desc = "Move selection down" })
+-- end

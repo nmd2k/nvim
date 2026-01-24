@@ -25,6 +25,17 @@ vim.cmd("set number")
 --     update_in_insert = false,
 -- })
 
+-- Delete not go into buffer
+-- vim.keymap.set("n", "dd", '"_dd', { noremap = true })
+-- vim.keymap.set("n", "dw", '"_dw', { noremap = true })
+-- vim.keymap.set("n", "de", '"_de', { noremap = true })
+vim.keymap.set("n", "dd", '"_dd')
+vim.keymap.set("n", "de", '"_de')
+vim.keymap.set("n", "d0", '"_d0')
+vim.keymap.set("n", "d$", '"_d$')
+vim.keymap.set("n", "dw", '"_dw')
+vim.keymap.set("n", "cw", '"_cw')
+
 -- Quick escape from insert mode
 vim.keymap.set("i", "jk", "<Esc>", { desc = "Exit insert mode" })
 vim.keymap.set("i", "kj", "<Esc>", { desc = "Exit insert mode" })

@@ -9,7 +9,7 @@ return {
         "mason-org/mason-lspconfig.nvim",
         config = function()
             require("mason-lspconfig").setup({
-                ensure_installed = { "lua_ls", "jedi_language_server", "clangd" },
+                ensure_installed = { "lua_ls", "jedi_language_server", "clangd", "pyright" },
             })
         end,
     },
@@ -29,6 +29,7 @@ return {
                 settings = {
                     python = {
                         analysis = {
+                            typeCheckingMode = "basic",
                             diagnosticMode = 'openFilesOnly',
                             autoSearchPaths = true,
                             useLibraryCodeForTypes = true,
