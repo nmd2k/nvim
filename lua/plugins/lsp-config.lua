@@ -26,7 +26,7 @@ return {
 					"stylua", -- Lua formatter
 					"isort", -- Python import sorter
 					"black", -- Python formatter (or use ruff)
-					"rustfmt", -- Rust formatter
+					-- "rustfmt", -- Rust formatter
 				},
 			})
 		end,

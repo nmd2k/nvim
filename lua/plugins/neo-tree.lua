@@ -6,25 +6,25 @@ return {
 		"MunifTanjim/nui.nvim",
 		"nvim-tree/nvim-web-devicons",
 	},
-    keys = {
-        {
-            "<C-b>",
-            ":Neotree filesystem position=left<CR>",
-            desc = "Open file explorer"
-        },
-        {
-            "<leader>e",
-            function()
-                -- If neo-tree is already loaded and we are in it, move to editor
-                if vim.bo.filetype == "neo-tree" then
-                    vim.cmd.wincmd("l")
-                else
-                    vim.cmd("Neotree focus")
-                end
-            end,
-            desc = "Toggle focus"
-        },
-    },
+	keys = {
+		{
+			"<C-b>",
+			":Neotree filesystem position=left<CR>",
+			desc = "Open file explorer",
+		},
+		{
+			"<leader>e",
+			function()
+				-- If neo-tree is already loaded and we are in it, move to editor
+				if vim.bo.filetype == "neo-tree" then
+					vim.cmd.wincmd("l")
+				else
+					vim.cmd("Neotree focus")
+				end
+			end,
+			desc = "Toggle focus",
+		},
+	},
 
 	config = function()
 		require("neo-tree").setup({

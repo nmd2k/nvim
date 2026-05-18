@@ -16,7 +16,6 @@ vim.cmd("set rnu")
 -- vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv")
 --
 
-
 -- Neovim virtual text inside Vscode
 -- vim.diagnostic.config({
 --     virtual_text = true,  -- show inline
@@ -41,4 +40,4 @@ vim.keymap.set("i", "jk", "<Esc>", { desc = "Exit insert mode" })
 vim.keymap.set("i", "kj", "<Esc>", { desc = "Exit insert mode" })
 
 -- sync system clipboard
-vim.opt.clipboard = 'unnamedplus'
+vim.opt.clipboard = "unnamedplus"
