@@ -6,24 +6,28 @@ return {
 		"MunifTanjim/nui.nvim",
 		"nvim-tree/nvim-web-devicons",
 	},
+    keys = {
+        {
+            "<C-b>",
+            ":Neotree filesystem position=left<CR>",
+            desc = "Open file explorer"
+        },
+        {
+            "<leader>e",
+            function()
+                -- If neo-tree is already loaded and we are in it, move to editor
+                if vim.bo.filetype == "neo-tree" then
+                    vim.cmd.wincmd("l")
+                else
+                    vim.cmd("Neotree focus")
+                end
+            end,
+            desc = "Toggle focus"
+        },
+    },
+
 	config = function()
-		vim.keymap.set(
-			"n",
-			"<C-b>",
-			":Neotree filesystem position=left<CR>",
-			{ desc = "Open file explorer at the left" }
-		)
-		vim.keymap.set("n", "<leader>e", function()
-			if vim.bo.filetype == "neo-tree" then
-				-- if inside neo-tree, go right (to editor)
-				vim.cmd.wincmd("l")
-			else
-				-- if in editor, open/toggle neo-tree
-				vim.cmd("Neotree focus")
-			end
-		end, { desc = "Toggle focus between explorer and editor" })
-		local neotree = require("neo-tree")
-		neotree.setup({
+		require("neo-tree").setup({
 			window = {
 				mappings = {
 					["s"] = "open_split",

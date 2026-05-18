@@ -1,55 +1,67 @@
 return {
-    {
-        "williamboman/mason.nvim",
-        config = function()
-            require("mason").setup()
-        end,
-    },
-    {
-        "mason-org/mason-lspconfig.nvim",
-        config = function()
-            require("mason-lspconfig").setup({
-                ensure_installed = { "lua_ls", "jedi_language_server", "clangd", "pyright" },
-            })
-        end,
-    },
-    {
-        "neovim/nvim-lspconfig",
-        lazy = false,
-        config = function()
-            local capabilities = require("cmp_nvim_lsp").default_capabilities()
-            local lspconfig = require("lspconfig")
-            lspconfig.lua_ls.setup({
-                capabilities = capabilities
-            })
+	{
+		"williamboman/mason.nvim",
+		config = function()
+			require("mason").setup()
+		end,
+	},
+	{
+		"mason-org/mason-lspconfig.nvim",
+		config = function()
+			require("mason-lspconfig").setup({
+				ensure_installed = {
+					"lua_ls",
+					"pyright",
+					"clangd",
+					"rust_analyzer",
+				},
+			})
+		end,
+	},
+	{
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		config = function()
+			require("mason-tool-installer").setup({
+				ensure_installed = {
+					"stylua", -- Lua formatter
+					"isort", -- Python import sorter
+					"black", -- Python formatter (or use ruff)
+					"rustfmt", -- Rust formatter
+				},
+			})
+		end,
+	},
+	{
+		"neovim/nvim-lspconfig",
+		config = function()
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+			-- Lua
+			vim.lsp.config("lua_ls", {
+				capabilities = capabilities,
+			})
+			vim.lsp.enable("lua_ls")
 
-            lspconfig.pyright.setup({
-                capabilities = capabilities,
-                settings = {
-                    python = {
-                        analysis = {
-                            typeCheckingMode = "basic",
-                            diagnosticMode = 'openFilesOnly',
-                            autoSearchPaths = true,
-                            useLibraryCodeForTypes = true,
-                            exclude = { "**/venv", "**/__pycache__" },
-                        },
-                    },
-                },
-            })
+			-- Python
+			vim.lsp.config("pyright", {
+				capabilities = capabilities,
+				settings = {
+					python = {
+						analysis = {
+							typeCheckingMode = "basic",
+							diagnosticMode = "openFilesOnly",
+							autoSearchPaths = true,
+							useLibraryCodeForTypes = true,
+							exclude = { "**/venv", "**/__pycache__" },
+						},
+					},
+				},
+			})
+			vim.lsp.enable("pyright")
 
-            vim.diagnostic.config({
-                virtual_text = true, -- inline messages
-                signs = true, -- symbols in the sign column
-                underline = true,
-                update_in_insert = false,
-            })
-
-            vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-            vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
-            vim.keymap.set("n", "gr", vim.lsp.buf.references, {})
-            vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
-        end,
-    },
+			local set = vim.keymap.set
+			set("n", "K", vim.lsp.buf.hover, { desc = "LSP Hover" })
+			set("n", "gd", vim.lsp.buf.definition, { desc = "Go to Definition" })
+		end,
+	},
 }
