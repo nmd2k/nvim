@@ -7,11 +7,11 @@ return {
 		"nvim-tree/nvim-web-devicons",
 	},
 	keys = {
-		{
-			"<C-b>",
-			":Neotree filesystem position=left<CR>",
-			desc = "Open file explorer",
-		},
+		-- {
+		-- 	"<C-b>",
+		-- 	":Neotree filesystem position=left<CR>",
+		-- 	desc = "Open file explorer",
+		-- },
 		{
 			"<leader>e",
 			function()
@@ -29,6 +29,7 @@ return {
 	config = function()
 		require("neo-tree").setup({
 			window = {
+				width = "25%",
 				mappings = {
 					["s"] = "open_split",
 					["v"] = "open_vsplit",
