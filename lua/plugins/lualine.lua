@@ -7,13 +7,19 @@ return {
 		require("lualine").setup({
 			option = {
 				theme = "auto",
-				-- component_separators = "",
-				-- section_separators = { left = "", right = "" },
+				component_separators = "",
+				section_separators = { left = "", right = "" },
 			},
-			-- sections = {
-			-- 	lualine_a = { { "mode", separator = { left = "" }, right_padding = 2 } },
-			-- 	lualine_z = { { "location", separator = { right = "" }, left_padding = 2 } },
-			-- },
+			sections = {
+				lualine_a = { { "mode", separator = { left = "" }, right_padding = 2 } },
+				lualine_z = { { "location", separator = { right = "" }, left_padding = 2 } },
+				lualine_x = {
+					{
+						require("noice").api.status.command.get,
+						cond = require("noice").api.status.command.has,
+					},
+				},
+			},
 		})
 	end,
 }

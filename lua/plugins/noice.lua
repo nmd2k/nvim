@@ -21,6 +21,7 @@ return {
 			command_palette = false, -- position the cmdline and popupmenu together
 			long_message_to_split = true, -- long messages will be sent to a split
 		},
+
 		-- popupmenu = {
 		-- 	enabled = true,
 		-- },
