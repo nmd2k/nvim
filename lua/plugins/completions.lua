@@ -10,6 +10,15 @@ return {
 		},
 	},
 	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		config = function()
+			require("nvim-autopairs").setup({
+				check_ts = true,
+			})
+		end,
+	},
+	{
 		"hrsh7th/nvim-cmp",
 		config = function()
 			local cmp = require("cmp")
@@ -23,16 +32,16 @@ return {
 				},
 				window = {
 					completion = cmp.config.window.bordered(),
-					documentation = cmp.config.window.bordered(),
+					documentation = cmp.config.disable,
 				},
 				mapping = cmp.mapping.preset.insert({
-					-- ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-					-- ["<C-j>"] = cmp.mapping.scroll_docs(4),
 					["<Tab>"] = cmp.mapping.select_next_item(),
 					["<S-Tab>"] = cmp.mapping.select_prev_item(),
-					["<C-Space>"] = cmp.mapping.complete(),
-					["<C-e>"] = cmp.mapping.abort(),
 					["<CR>"] = cmp.mapping.confirm({ select = true }),
+					-- ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+					-- ["<C-j>"] = cmp.mapping.scroll_docs(4),
+					-- ["<C-Space>"] = cmp.mapping.complete(),
+					-- ["<C-e>"] = cmp.mapping.abort(),
 				}),
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
@@ -41,6 +50,14 @@ return {
 					{ name = "buffer" },
 				}),
 			})
+
+			local autopairs = require("nvim-autopairs")
+			autopairs.setup({
+				check_ts = true,
+			})
+
+			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 		end,
 	},
 }
