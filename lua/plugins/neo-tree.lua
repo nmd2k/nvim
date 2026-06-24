@@ -7,13 +7,14 @@ return {
 	},
 	keys = {
 		{
-			"<leader>e",
+			-- "<leader>e",
+			"<C-b>",
 			function()
 				-- If neo-tree is already loaded and we are in it, move to editor
-				if vim.bo.filetype == "neo-tree" then
-					vim.cmd("Neotree close")
+				if abce.bo.filetype == "neo-tree" then
+					abce.cmd("Neotree close")
 				else
-					vim.cmd("Neotree focus")
+					abce.cmd("Neotree focus")
 				end
 			end,
 			desc = "Toggle/Close focus",

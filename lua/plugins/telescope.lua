@@ -13,7 +13,7 @@ return {
 
 			telescope.setup({
 				defaults = {
-					initial_mode = "normal",
+					-- initial_mode = "normal",
 					preview = { filesize_limit = 0.2 },
 				},
 				extensions = {
@@ -40,8 +40,10 @@ return {
 			vim.keymap.set(
 				"n",
 				"<leader>ff",
-				telescope.extensions.file_browser.file_browser,
-				{ desc = "Telescope file browser" }
+				builtin.find_files,
+				{ desc = "Telescope find files" }
+				-- telescope.extensions.file_browser.file_browser,
+				-- { desc = "Telescope file browser" }
 			)
 		end,
 	},

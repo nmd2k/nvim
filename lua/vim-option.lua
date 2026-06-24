@@ -16,5 +16,9 @@ vim.keymap.set("n", "<CR>", "m`o<Esc>``", { silent = true })
 vim.keymap.set("i", "jk", "<Esc>", { desc = "Exit insert mode" })
 vim.keymap.set("i", "kj", "<Esc>", { desc = "Exit insert mode" })
 
+-- Show error in floating window
+vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show line diagnostic" })
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic list" })
+
 -- sync system clipboard
 vim.opt.clipboard = "unnamedplus"
