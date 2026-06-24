@@ -62,8 +62,21 @@ return {
 
 			local set = vim.keymap.set
 			set("n", "K", vim.lsp.buf.hover, { desc = "LSP Hover" })
+
+			if vim.g.vscode then
+				set("n", "gd", builtin.lsp_definitions, { desc = "Go to Definitions" })
+				set("n", "gr", builtin.lsp_references, { desc = "Go to References" })
+			else
+				-- Neovim setting
+				set("n", "gd", require("telescope.builtin").lsp_definitions, { desc = "Go to Definitions" })
+				set("n", "grr", require("telescope.builtin").lsp_references, { desc = "Go to References" })
+			end
+
 			set("n", "gd", require("telescope.builtin").lsp_definitions, { desc = "Go to Definitions" })
 			set("n", "grr", require("telescope.builtin").lsp_references, { desc = "Go to References" })
+
+			-- VScode setting
+			--
 		end,
 	},
 }
