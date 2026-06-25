@@ -22,3 +22,7 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagn
 
 -- sync system clipboard
 vim.opt.clipboard = "unnamedplus"
+
+-- Tab go
+vim.keymap.set("n", "H", ":tabprevious<CR>", { desc = "Previous tab" })
+vim.keymap.set("n", "L", ":tabnext<CR>", { desc = "Next tab" })
