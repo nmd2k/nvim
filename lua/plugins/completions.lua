@@ -25,7 +25,7 @@ return {
 		},
 		config = function()
 			local cmp = require("cmp")
-			require("luasnip.loaders.from_vscode").lazy_load()
+			local luasnip = require("luasnip")
 
 			cmp.setup({
 				snippet = {
@@ -34,17 +34,51 @@ return {
 					end,
 				},
 				window = {
-					completion = cmp.config.window.bordered(),
-					-- documentation = cmp.config.window.bordered(),
+					completion = cmp.config.window.bordered({
+						border = "rounded",
+						winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
+					}),
+					documentation = cmp.config.window.bordered({
+						border = "rounded",
+						winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
+					}),
 				},
 				mapping = cmp.mapping.preset.insert({
-					["<Tab>"] = cmp.mapping.select_next_item(),
-					["<S-Tab>"] = cmp.mapping.select_prev_item(),
-					["<CR>"] = cmp.mapping.confirm({ select = true }),
-					-- ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-					-- ["<C-j>"] = cmp.mapping.scroll_docs(4),
+					-- Scroll documentation
+					["<C-d>"] = cmp.mapping.scroll_docs(4),
+					["<C-u>"] = cmp.mapping.scroll_docs(-4),
+
+					-- Manually trigger completion menu
 					-- ["<C-Space>"] = cmp.mapping.complete(),
-					-- ["<C-e>"] = cmp.mapping.abort(),
+					["<C-e>"] = cmp.mapping.abort(),
+					["<C-Space>"] = cmp.mapping(function()
+						if cmp.visible_docs() then
+							cmp.close_docs()
+						else
+							cmp.open_docs()
+						end
+					end, { "i", "c" }),
+
+					-- Confirm selection
+					["<CR>"] = cmp.mapping.confirm({ select = true }),
+					["<Tab>"] = cmp.mapping(function(fallback)
+						if cmp.visible() then
+							cmp.select_next_item()
+						elseif luasnip.expand_or_jumpable() then
+							luasnip.expand_or_jump()
+						else
+							fallback()
+						end
+					end, { "i", "s" }),
+					["<S-Tab>"] = cmp.mapping(function(fallback)
+						if cmp.visible() then
+							cmp.select_prev_item()
+						elseif luasnip.jumpable(-1) then
+							luasnip.jump(-1)
+						else
+							fallback()
+						end
+					end, { "i", "s" }),
 				}),
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
@@ -70,6 +104,8 @@ return {
 				}),
 				matching = { disallow_symbol_nonprefix_matching = false },
 			})
+
+			require("luasnip.loaders.from_vscode").lazy_load()
 
 			local autopairs = require("nvim-autopairs")
 			autopairs.setup({

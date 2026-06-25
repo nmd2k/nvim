@@ -1,6 +1,13 @@
 return {
 	"nvim-lualine/lualine.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
+	options = {
+		disabled_filetypes = {
+			statusline = { "nofile", "prompt", "gui2", "ui2" },
+			winbar = { "nofile", "prompt", "gui2", "ui2" },
+		},
+		globalstatus = true,
+	},
 	config = function()
 		require("lualine").setup({
 			options = {
@@ -30,11 +37,11 @@ return {
 
 				-- Right Side: Noice / Macros & Utilities
 				lualine_x = {
-					{
-						require("noice").api.status.command.get,
-						cond = require("noice").api.status.command.has,
-						color = { fg = "#ff9e3b" }, -- Subtle amber pop for active macro recording/commands
-					},
+					-- {
+					-- 	-- require("noice").api.status.command.get,
+					-- 	-- cond = require("noice").api.status.command.has,
+					-- 	color = { fg = "#ff9e3b" }, -- Subtle amber pop for active macro recording/commands
+					-- },
 					{ "diagnostics", sources = { "nvim_diagnostic" } },
 					{ "encoding" },
 				},

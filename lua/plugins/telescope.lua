@@ -15,6 +15,7 @@ return {
 				defaults = {
 					-- initial_mode = "normal",
 					preview = { filesize_limit = 0.2 },
+					layout_strategy = "vertical",
 					vimgrep_arguments = {
 						"rg",
 						"--with-filename",
@@ -28,7 +29,7 @@ return {
 				extensions = {
 					["ui-select"] = { require("telescope.themes").get_dropdown({}) },
 					file_browser = {
-						-- 	theme = "dropdown",
+						theme = "dropdown",
 						hijack_netrw = true,
 						hidden = true,
 						display_stat = false,

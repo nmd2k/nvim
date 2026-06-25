@@ -12,6 +12,15 @@ return {
 		priority = 1000,
 		config = function()
 			vim.cmd.colorscheme("catppuccin-frappe")
+
+			require("catppuccin").setup({
+				styles = {
+					comments = { "italic" },
+					conditionals = { "italic" },
+					loops = { "italic" },
+					keywords = { "italic" },
+				},
+			})
 		end,
 	},
 }
