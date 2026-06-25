@@ -51,8 +51,10 @@ return {
 			vim.keymap.set(
 				"n",
 				"<leader>ff",
-				telescope.extensions.file_browser.file_browser,
-				{ desc = "Telescope file browser" }
+				builtin.find_files,
+				{ desc = "Telescope find files" }
+				-- telescope.extensions.file_browser.file_browser,
+				-- { desc = "Telescope file browser" }
 			)
 		end,
 	},
