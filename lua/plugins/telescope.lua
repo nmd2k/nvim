@@ -13,14 +13,25 @@ return {
 
 			telescope.setup({
 				defaults = {
-					initial_mode = "normal",
+					-- initial_mode = "normal",
 					preview = { filesize_limit = 0.2 },
+					vimgrep_arguments = {
+						"rg",
+						"--with-filename",
+						"--line-number",
+						"--column",
+						"--smart-case",
+						"--hidden",
+						"--glob",
+					},
 				},
 				extensions = {
 					["ui-select"] = { require("telescope.themes").get_dropdown({}) },
 					file_browser = {
 						-- 	theme = "dropdown",
 						hijack_netrw = true,
+						hidden = true,
+						display_stat = false,
 					},
 				},
 			})
