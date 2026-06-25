@@ -11,10 +11,10 @@ return {
 			"<C-b>",
 			function()
 				-- If neo-tree is already loaded and we are in it, move to editor
-				if abce.bo.filetype == "neo-tree" then
-					abce.cmd("Neotree close")
+				if vim.bo.filetype == "neo-tree" then
+					vim.cmd("Neotree close")
 				else
-					abce.cmd("Neotree focus")
+					vim.cmd("Neotree focus")
 				end
 			end,
 			desc = "Toggle/Close focus",
