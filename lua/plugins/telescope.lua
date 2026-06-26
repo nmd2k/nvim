@@ -1,62 +1,55 @@
-return {
-	{
-		"nvim-telescope/telescope.nvim",
-		lazy = false,
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-telescope/telescope-file-browser.nvim",
-			"nvim-telescope/telescope-ui-select.nvim",
-		},
-		config = function()
-			local telescope = require("telescope")
-			local builtin = require("telescope.builtin")
+local telescope = require("telescope")
+local builtin = require("telescope.builtin")
 
-			telescope.setup({
-				defaults = {
-					-- initial_mode = "normal",
-					preview = { filesize_limit = 0.2 },
-					layout_strategy = "vertical",
-					vimgrep_arguments = {
-						"rg",
-						"--with-filename",
-						"--line-number",
-						"--column",
-						"--smart-case",
-						"--hidden",
-						"--glob",
-					},
-				},
-				extensions = {
-					["ui-select"] = { require("telescope.themes").get_dropdown({}) },
-					file_browser = {
-						theme = "dropdown",
-						hijack_netrw = true,
-						hidden = true,
-						display_stat = false,
-					},
-				},
-			})
-
-			-- Load extensions
-			telescope.load_extension("ui-select")
-			telescope.load_extension("file_browser")
-
-			-- Keymap
-			-- These use 'builtin'
-			vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
-			vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
-			vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
-			vim.keymap.set("n", "<leader>fp", builtin.commands, { desc = "Telescope commands" })
-
-			-- This uses the 'extensions' specifically
-			vim.keymap.set(
-				"n",
-				"<leader>ff",
-				builtin.find_files,
-				{ desc = "Telescope find files" }
-				-- telescope.extensions.file_browser.file_browser,
-				-- { desc = "Telescope file browser" }
-			)
-		end,
+telescope.setup({
+	defaults = {
+		file_ignore_patterns = { "%.git/" },
+		-- layout_strategy = "vertical",
 	},
-}
+	pickers = {
+		find_files = {
+			find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+		},
+		live_grep = {
+			additional_args = function()
+				return { "--glob", "!**/.git/*", "--glob", "!**/go.sum", "--glob", "!**/go.mod" }
+			end,
+		},
+		lsp_definitions = {
+			show_line = false,
+			theme = "dropdown",
+			file_ignore_patterns = { ".*_templ.go" },
+		},
+		lsp_references = {
+			show_line = false,
+			include_declaration = false,
+			theme = "dropdown",
+			file_ignore_patterns = { ".*_templ.go" },
+		},
+	},
+	extensions = {
+		file_browser = {
+			hijack_netrw = true,
+			hidden = true,
+			display_stat = false,
+            preview = true,
+		},
+		fzf = {
+			fuzzy = true,
+			overrid_generic_sorter = true,
+			overrid_file_sorter = true,
+			case_mode = "smart_case",
+		},
+	},
+})
+
+telescope.load_extension("fzf")
+telescope.load_extension("file_browser")
+
+vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
+vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
+-- vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
+
+vim.keymap.set("n", "<space>fb", ":Telescope file_browser<CR>")
+-- open file_browser with the path of the current buffer
+vim.keymap.set("n", "<space>fb", ":Telescope file_browser path=%:p:h select_buffer=true<CR>")
