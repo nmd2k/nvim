@@ -37,6 +37,7 @@ vim.lsp.enable({
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 vim.lsp.config("*", { capabilities = capabilities })
+vim.lsp.inlay_hint.enable(true)
 
 vim.lsp.config("lua_ls", {
 	settings = {
@@ -49,7 +50,24 @@ vim.lsp.config("lua_ls", {
 	},
 })
 vim.lsp.config("html", { filetypes = { "html", "htmldjango", "templ" } })
-vim.lsp.inlay_hint.enable(true)
+vim.lsp.config("rust_analyzer", {
+	cmd = { "rust-analyzer" },
+	settings = {
+		["rust-analyzer"] = {
+			files = { watcher = "server" },
+			cargo = { targetDir = true },
+			check = { command = "clippy" },
+			inlayHints = {
+				bindingModeHints = { enabled = true },
+				closureCaptureHints = { enabled = true },
+				closureReturnTypeHints = { enable = "always" },
+				maxLength = 100,
+			},
+			rustc = { source = "discover" },
+		},
+	},
+	root_markers = { { "Config.toml" }, ".git" },
+})
 
 vim.diagnostic.config({
 	severity_sort = true,

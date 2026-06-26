@@ -4,10 +4,6 @@
       "rev": "0abc8f390b278c3b4aabc4c004ac8a088b65cf24",
       "src": "https://github.com/L3MON4D3/LuaSnip"
     },
-    "barbar.nvim": {
-      "rev": "337ecfadb8bf005050990bf2f624dc4fc828dabd",
-      "src": "https://github.com/romgrk/barbar.nvim"
-    },
     "catppuccin": {
       "rev": "e068ab5f8261f23f6f71ffd8791ae40315b77b9c",
       "src": "https://github.com/catppuccin/nvim"

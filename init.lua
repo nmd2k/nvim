@@ -1,5 +1,6 @@
-vim.loader.enable()
-
+if vim.loader then
+	vim.loader.enable()
+end
 -- Package Management
 require("vim._core.ui2").enable({ enable = true })
 require("pack")
@@ -15,6 +16,7 @@ require("plugins.theme")
 require("plugins.lsp")
 require("plugins.cmp")
 require("plugins.telescope")
--- require("plugins.mini")
-require("plugins.ui")
+if not vim.g.vscode then
+	require("plugins.ui")
+end
 -- require("plugins.treesitter")

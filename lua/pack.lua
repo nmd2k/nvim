@@ -36,10 +36,8 @@ vim.pack.add({
 
 	"https://github.com/nvim-lualine/lualine.nvim",
 	"https://github.com/lukas-reineke/indent-blankline.nvim",
-	"https://github.com/romgrk/barbar.nvim",
+	-- "https://github.com/romgrk/barbar.nvim",
 	"https://github.com/hiphish/rainbow-delimiters.nvim",
-    "https://github.com/nvim-mini/mini.notify",
-
 	-- Helpers
 	"https://github.com/folke/which-key.nvim",
 })
