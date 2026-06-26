@@ -9,7 +9,8 @@ vim.g.maplocalleader = "\\"
 -- =============
 vim.opt.number = true -- line number
 vim.opt.relativenumber = true -- rnu
--- vim.opt.cursorline = true
+vim.opt.cursorline = true
+vim.opt.cursorlineopt = "number"
 vim.opt.wrap = false
 vim.opt.scrolloff = 10
 vim.opt.sidescrolloff = 10
@@ -51,10 +52,15 @@ vim.opt.backup = false
 vim.opt.undodir = vim.fn.stdpath("data") .. "/undodir"
 vim.opt.undofile = true
 
-
 vim.api.nvim_create_autocmd("TextYankPost", {
     desc = "Highlight when yanking text",
     callback = function()
         vim.hl.on_yank()
+    end,
+})
+vim.api.nvim_create_autocmd("ColorScheme", {
+    pattern = "*",
+    callback = function()
+        vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#e0af68", bold = true })
     end,
 })

@@ -1,7 +1,7 @@
 vim.pack.add({
 	-- Lsp
 	"https://github.com/neovim/nvim-lspconfig",
-	-- { src = "https://github.com/nvim-treesitter/nvim-treesitter", branch = "main" },
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", branch = "main" },
 	"https://github.com/mason-org/mason-lspconfig.nvim",
 	"https://github.com/williamboman/mason.nvim",
 	"https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim",

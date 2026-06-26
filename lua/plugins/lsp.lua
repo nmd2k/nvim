@@ -39,6 +39,7 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 vim.lsp.config("*", { capabilities = capabilities })
 vim.lsp.inlay_hint.enable(true)
 
+-- LSP Config for each PL
 vim.lsp.config("lua_ls", {
 	settings = {
 		Lua = {
@@ -69,6 +70,7 @@ vim.lsp.config("rust_analyzer", {
 	root_markers = { { "Config.toml" }, ".git" },
 })
 
+-- Diagnostic of LSP
 vim.diagnostic.config({
 	severity_sort = true,
 	update_in_insert = false,
