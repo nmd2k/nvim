@@ -14,5 +14,5 @@ vim.api.nvim_create_user_command("PackUpdate", function(opts)
     else
         vim.pack.update()
     end
-end, { nargs = "+", desc = "Update all plugins or specific ones" })
+end, { nargs = "*", desc = "Update all plugins or specific ones" })
 

@@ -7,12 +7,13 @@ vim.pack.add({
 	"https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim",
 
 	-- Utility
-	{ src = "https://github.com/nvim-mini/mini.nvim", name = "mini" },
+	-- { src = "https://github.com/nvim-mini/mini.nvim", name = "mini" },
 	{ src = "https://github.com/nvim-telescope/telescope.nvim", branch = 'master', name = "telescope" },
 	{ src = "https://github.com/nvim-lua/plenary.nvim", name = "plenary" },
 	{ src = "https://github.com/nvim-telescope/telescope-file-browser.nvim", name = "telescope-file-browser" },
 	-- { src = "https://github.com/nvim-telescope/telescope-ui-select.nvim", name = "telescope-ui-select" },
 	"https://github.com/nvim-telescope/telescope-fzf-native.nvim",
+    'https://github.com/nvim-mini/mini.notify',
 
 	-- Completion
 	"https://github.com/stevearc/conform.nvim",
