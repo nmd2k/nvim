@@ -1,7 +1,7 @@
 # My neo-vim config
 
-
 ## Installation
+Require neovim >= v0.12.x
 
 **For Windows**
 * Release version:
@@ -30,13 +30,14 @@ Git clone this repo into `~/.config/nvim`
 git clone https://github.com/nmd2k/nvim.git ~/.config/nvim
 ```
 
-## Install npm for LSP
-Version 0.39.1
+
+~~## Install npm for LSP~~
+> Neovim >=v0.12.x can use native LSP builtin
 
 ```
-# Install nvm
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+# iNSTALL NVM
+CuRL -O- HTTPS://RAW.GITHUBUSERCONTENT.COM/NVM-SH/NVM/V0.39.1/INSTALL.SH | BASH
 
-# Install Node.js and npm
-nvm install node
+# iNSTALL nODE.JS AND NPM
+NVM INSTALL NODE
 ```
