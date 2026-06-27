@@ -25,9 +25,8 @@ set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic list"
 set("n", "L", ":tabprevious<CR>", { desc = "Previous tab" })
 set("n", "H", ":tabnext<CR>", { desc = "Next tab" })
 
-
 -- Undotree
 set("n", "<leader>u", function()
-    vim.cmd.packadd("nvim.undotree")
-    require("undotree").open()
+	vim.cmd.packadd("nvim.undotree")
+	require("undotree").open()
 end, { desc = "Toggle Builtin Undo tree" })
