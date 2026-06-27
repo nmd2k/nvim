@@ -8,12 +8,13 @@ vim.pack.add({
 
 	-- Utility
 	-- { src = "https://github.com/nvim-mini/mini.nvim", name = "mini" },
-	{ src = "https://github.com/nvim-telescope/telescope.nvim", branch = 'master', name = "telescope" },
+	{ src = "https://github.com/nvim-telescope/telescope.nvim", branch = "master", name = "telescope" },
 	{ src = "https://github.com/nvim-lua/plenary.nvim", name = "plenary" },
 	{ src = "https://github.com/nvim-telescope/telescope-file-browser.nvim", name = "telescope-file-browser" },
 	-- { src = "https://github.com/nvim-telescope/telescope-ui-select.nvim", name = "telescope-ui-select" },
 	"https://github.com/nvim-telescope/telescope-fzf-native.nvim",
-    'https://github.com/nvim-mini/mini.notify',
+	"https://github.com/nvim-mini/mini.notify",
+	"https://github.com/tpope/vim-fugitive",
 
 	-- Completion
 	"https://github.com/stevearc/conform.nvim",
@@ -30,10 +31,10 @@ vim.pack.add({
 	-- Theme & UI
 	"https://github.com/nvim-tree/nvim-web-devicons",
 	"https://github.com/catppuccin/nvim",
-	"https://github.com/rebelot/kanagawa.nvim",
-	"https://github.com/folke/tokyonight.nvim",
-	"https://github.com/ellisonleao/gruvbox.nvim",
-	"https://github.com/projekt0n/github-nvim-theme",
+	-- "https://github.com/rebelot/kanagawa.nvim",
+	-- "https://github.com/folke/tokyonight.nvim",
+	-- "https://github.com/ellisonleao/gruvbox.nvim",
+	-- "https://github.com/projekt0n/github-nvim-theme",
 
 	"https://github.com/nvim-lualine/lualine.nvim",
 	"https://github.com/lukas-reineke/indent-blankline.nvim",
