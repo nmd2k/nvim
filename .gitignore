@@ -1,0 +1,21 @@
+# Package Managers
+.repro/
+lazy-lock.json
+nvim-pack-lock.json
+lazy/
+packer_compiled.lua
+plugin/packer_compiled.lua
+
+# LSP & log
+*.log
+
+# Backup
+*.swp
+*.swo
+*~
+
+# Neovim state & cache
+.netrwhist
+undo/
+.shada
+shada/
