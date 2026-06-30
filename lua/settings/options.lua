@@ -41,7 +41,6 @@ vim.opt.concealcursor = "" -- do not hide cursorline in markup
 vim.opt.synmaxcol = 300 -- syntax highlighting limit
 vim.opt.fillchars = { eob = " " } -- hide "~" on empty lines
 
-vim.opt.clipboard = "unnamedplus"
 vim.opt.wildoptions = "pum"
 -- vim.opt.guicursor = "i-ci:ver30-iCursor-blinkwait300-blinkon200-blinkoff150"
 -- vim.opt.guicursor = ""
@@ -52,6 +51,13 @@ vim.opt.backup = false
 vim.opt.undodir = vim.fn.stdpath("data") .. "/undodir"
 vim.opt.undofile = true
 
+-- vim.opt.clipboard = "unnamedplus"
+vim.api.nvim_create_autocmd("VimEnter", {
+  desc = "Setup system clipboard",
+  callback = function()
+    vim.opt.clipboard = "unnamedplus"
+  end,
+})
 vim.api.nvim_create_autocmd("TextYankPost", {
     desc = "Highlight when yanking text",
     callback = function()

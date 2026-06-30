@@ -34,16 +34,17 @@ telescope.setup({
 			display_stat = false,
             preview = true,
 		},
-		fzf = {
-			fuzzy = true,
-			overrid_generic_sorter = true,
-			overrid_file_sorter = true,
-			case_mode = "smart_case",
-		},
+        -- Optional, require build fzf
+		-- fzf = {
+		-- 	fuzzy = true,
+		-- 	overrid_generic_sorter = true,
+		-- 	overrid_file_sorter = true,
+		-- 	case_mode = "smart_case",
+		-- },
 	},
 })
 
-telescope.load_extension("fzf")
+-- telescope.load_extension("fzf")
 telescope.load_extension("file_browser")
 
 vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
