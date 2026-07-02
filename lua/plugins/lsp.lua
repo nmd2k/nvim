@@ -4,8 +4,8 @@ require("mason-tool-installer").setup({
 	ensure_installed = {
 		"lua_ls",
 		"stylua",
-		"prettier",
 		"black",
+		-- "prettier",
 	},
 })
 
@@ -22,8 +22,8 @@ require("conform").setup({
 	formatters_by_ft = {
 		lua = { "stylua" },
 		python = { "isort", "black" },
-		javascript = { "prettier" },
 		rust = { "rustfmt" },
+		-- javascript = { "prettier" },
 	},
 })
 
@@ -107,16 +107,19 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 		map("n", "gd", function()
 			require("telescope.builtin").lsp_definitions()
-		end, "Go to definition")
+		end, "Go to Definition")
 		map("n", "gi", function()
 			require("telescope.builtin").lsp_implementations()
-		end, "Go to implementation")
+		end, "Go to Implementation")
 		map("n", "gr", function()
 			require("telescope.builtin").lsp_references()
-		end, "References")
+		end, "Go to References")
+		map("n", "gO", function()
+			require("telescope.builtin").lsp_document_symbols({ layout_strategy = "vertical" })
+		end, "Document Symbol")
 
 		map("n", "<leader>f", function()
 			require("conform").format({ async = true, lsp_fallback = true })
-		end, "Format buffer")
+		end, "Format Buffer")
 	end,
 })

@@ -66,7 +66,7 @@ cmp.setup({
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
 		{ name = "buffer" },
-        { name = "path" },
+		{ name = "path" },
 	}),
 })
 
@@ -78,7 +78,18 @@ cmp.setup.cmdline("/", {
 })
 
 cmp.setup.cmdline(":", {
-	mapping = cmp.mapping.preset.cmdline(),
+	mapping = cmp.mapping.preset.cmdline({
+		["<CR>"] = cmp.mapping({
+			c = function(fallback)
+				if cmp.visible() and cmp.get_selected_entry() then
+					cmp.confirm({ select = false })
+				else
+					cmp.close()
+					fallback()
+				end
+			end,
+		}),
+	}),
 	sources = cmp.config.sources({
 		{ name = "path" },
 	}, {
