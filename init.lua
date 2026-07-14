@@ -17,7 +17,8 @@ if not vim.g.vscode then
 	require("plugins.lsp")
 	require("plugins.cmp")
 	require("plugins.ui")
+    require("plugins.terminal")
 
     -- Optional, require tree-sitter-cli
-	-- require("plugins.treesitter")
+	require("plugins.treesitter")
 end

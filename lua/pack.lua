@@ -16,6 +16,9 @@ vim.pack.add({
 	"https://github.com/nvim-mini/mini.notify",
 	"https://github.com/tpope/vim-fugitive",
 
+    -- Integrated terminal
+    "https://github.com/voldikss/vim-floaterm",
+
 	-- Completion
 	"https://github.com/stevearc/conform.nvim",
 	"https://github.com/L3MON4D3/LuaSnip",
