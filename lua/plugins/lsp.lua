@@ -23,6 +23,8 @@ require("conform").setup({
 		lua = { "stylua" },
 		python = { "isort", "black" },
 		rust = { "rustfmt" },
+        c = { "clang-format" },
+        cpp = { "clang-format" },
 		-- javascript = { "prettier" },
 	},
 })
