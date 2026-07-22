@@ -31,9 +31,12 @@ telescope.setup({
 		file_browser = {
 			hijack_netrw = true,
 			hidden = true,
-			display_stat = false,
             preview = true,
+			-- display_stat = false,
 		},
+        ["ui-select"] = {
+            require("telescope.themes").get_dropdown()
+        }
         -- Optional, require build fzf
 		-- fzf = {
 		-- 	fuzzy = true,
@@ -46,6 +49,7 @@ telescope.setup({
 
 -- telescope.load_extension("fzf")
 telescope.load_extension("file_browser")
+telescope.load_extension("ui-select")
 
 vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
 vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
