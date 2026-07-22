@@ -2,10 +2,16 @@ require("mason").setup()
 
 require("mason-tool-installer").setup({
 	ensure_installed = {
+        -- Lua
 		"lua_ls",
 		"stylua",
-		"black",
-		-- "prettier",
+        -- Python
+        "pyright",
+        -- Rust
+        "rust_analyzer",
+        "ruff",
+        -- C/C++
+        "clangd",
 	},
 })
 
@@ -15,17 +21,12 @@ require("mason-lspconfig").setup({
 
 -- conform: formatter
 require("conform").setup({
-	-- format_on_save = {
-	--     timeout_ms = 500,
-	--     lsp_format = "fallback",
-	-- },
 	formatters_by_ft = {
 		lua = { "stylua" },
-		python = { "isort", "black" },
+		python = { "ruff" },
 		rust = { "rustfmt" },
-        c = { "clang-format" },
-        cpp = { "clang-format" },
-		-- javascript = { "prettier" },
+		c = { "clang-format" },
+		cpp = { "clang-format" },
 	},
 })
 
@@ -104,23 +105,23 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		end
 
 		map("n", "K", vim.lsp.buf.hover, "LSP Hover")
-		map("n", "<leader>rn", vim.lsp.buf.rename, "Rename symbol")
-		map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "Code action")
+		map("n", "grn", vim.lsp.buf.rename, "Rename symbol")
+		map({ "n", "v" }, "gra", vim.lsp.buf.code_action, "Code action")
 
-		map("n", "gd", function()
+		map("n", "grd", function()
 			require("telescope.builtin").lsp_definitions()
 		end, "Go to Definition")
-		map("n", "gi", function()
+		map("n", "gri", function()
 			require("telescope.builtin").lsp_implementations()
 		end, "Go to Implementation")
-		map("n", "gr", function()
+		map("n", "grr", function()
 			require("telescope.builtin").lsp_references()
 		end, "Go to References")
 		map("n", "gO", function()
 			require("telescope.builtin").lsp_document_symbols({ layout_strategy = "vertical" })
 		end, "Document Symbol")
 
-		map("n", "<leader>f", function()
+		map("n", "gf", function()
 			require("conform").format({ async = true, lsp_fallback = true })
 		end, "Format Buffer")
 	end,
