@@ -11,7 +11,7 @@ set("n", "<leader>d", [["_d]], { desc = "Delete without yanking" })
 set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 -- Quick escape from insert mode
 set("i", "jk", "<Esc>", { desc = "Exit insert mode" })
--- set("i", "kj", "<Esc>", { desc = "Exit insert mode" })
+set("i", "kj", "<Esc>", { desc = "Exit insert mode" })
 
 -- Move lines down/up in visual selection
 set("v", "J", ":m  '>+1<CR>gv=gv", { desc = "moves lines down in visual selection" })
@@ -22,8 +22,8 @@ set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show line diagnostic"
 set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic list" })
 
 -- Tab go
-set("n", "L", ":tabprevious<CR>", { desc = "Previous tab" })
-set("n", "H", ":tabnext<CR>", { desc = "Next tab" })
+set("n", "H", ":tabprevious<CR>", { desc = "Previous tab" })
+set("n", "L", ":tabnext<CR>", { desc = "Next tab" })
 
 -- Undotree
 set("n", "<leader>u", function()
