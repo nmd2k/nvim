@@ -15,6 +15,7 @@ vim.pack.add({
 	"https://github.com/nvim-telescope/telescope-fzf-native.nvim",
 	"https://github.com/nvim-mini/mini.notify",
 	"https://github.com/tpope/vim-fugitive",
+    "https://github.com/folke/persistence.nvim",
 
     -- Integrated terminal
     "https://github.com/voldikss/vim-floaterm",

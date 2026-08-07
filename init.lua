@@ -20,5 +20,6 @@ if not vim.g.vscode then
     require("plugins.terminal")
 
     -- Optional, require tree-sitter-cli
+	require("plugins.session")
 	require("plugins.treesitter")
 end
