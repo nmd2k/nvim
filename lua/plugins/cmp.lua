@@ -15,11 +15,34 @@ cmp.setup({
 			require("luasnip").lsp_expand(args.body)
 		end,
 	},
+	formatting = {
+		fields = { "abbr", "menu", "kind" },
+		format = function(entry, item)
+			-- Define menu shorthand for different completion sources.
+			local menu_icon = {
+				nvim_lsp = "NLSP",
+				nvim_lua = "NLUA",
+				luasnip = "LSNP",
+				buffer = "BUFF",
+				path = "PATH",
+			}
+			item.menu = menu_icon[entry.source.name]
+			local max_width = math.floor(vim.o.columns * 0.20)
+
+			if vim.fn.strchars(item.abbr) > max_width then
+				item.abbr = vim.fn.strcharpart(item.abbr, 0, max_width - 1) .. "…"
+			end
+
+			return item
+		end,
+	},
 	window = {
 		completion = cmp.config.window.bordered({
 			border = ui.border("CmpBorder"),
 			winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
 		}),
+
+		-- documentation = cmp.config.disable,
 		documentation = cmp.config.window.bordered({
 			border = ui.border("CmpBorder"),
 			winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
@@ -31,36 +54,16 @@ cmp.setup({
 		["<C-u>"] = cmp.mapping.scroll_docs(-4),
 
 		-- Manually trigger completion menu
-		-- ["<C-Space>"] = cmp.mapping.complete(),
-		["<C-e>"] = cmp.mapping.abort(),
-		["<C-Space>"] = cmp.mapping(function()
-			if cmp.visible_docs() then
-				cmp.close_docs()
+		["<Esc>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.abort()
 			else
-				cmp.open_docs()
+				fallback()
 			end
-		end, { "i", "c" }),
+		end, { "i" }),
 
 		-- Confirm selection
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
-		["<Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_next_item()
-			elseif luasnip.expand_or_jumpable() then
-				luasnip.expand_or_jump()
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
-		["<S-Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_prev_item()
-			elseif luasnip.jumpable(-1) then
-				luasnip.jump(-1)
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
 	}),
 	sources = cmp.config.sources({
 		{ name = "nvim_lsp" },

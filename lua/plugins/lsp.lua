@@ -2,16 +2,16 @@ require("mason").setup()
 
 require("mason-tool-installer").setup({
 	ensure_installed = {
-        -- Lua
+		-- Lua
 		"lua_ls",
 		"stylua",
-        -- Python
-        "pyright",
-        -- Rust
-        "rust_analyzer",
-        "ruff",
-        -- C/C++
-        "clangd",
+		-- Python
+		"pyright",
+		-- Rust
+		"rust_analyzer",
+		"ruff",
+		-- C/C++
+		"clangd",
 	},
 })
 
@@ -60,6 +60,7 @@ vim.lsp.config("rust_analyzer", {
 		["rust-analyzer"] = {
 			files = { watcher = "server" },
 			cargo = { targetDir = true },
+			procMacro = { enable = true },
 			check = { command = "clippy" },
 			inlayHints = {
 				bindingModeHints = { enabled = true },
@@ -70,7 +71,7 @@ vim.lsp.config("rust_analyzer", {
 			rustc = { source = "discover" },
 		},
 	},
-	root_markers = { { "Config.toml" }, ".git" },
+	root_markers = { { "Cargo.toml" }, ".git" },
 })
 
 -- Diagnostic of LSP
